@@ -1,0 +1,247 @@
+@import "variables";
+@import "mixins";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  height: 100vh;
+  font-family: $bodyFont;
+}
+
+main {
+  .main-container {
+    width: calc(min(90%, 150rem));
+    margin: 4rem auto;
+    display: grid;
+    row-gap: 4rem;
+    justify-items: center;
+    grid-template-areas:
+      "text-area"
+      "reviews"
+      "testimony";
+  }
+}
+
+.text {
+  grid-area: text-area;
+  .container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    .text__title {
+      font-size: 2.5rem;
+      font-weight: $heavyWeight;
+      color: $veryDarkMagenta;
+      padding: 0 2rem;
+    }
+    .text__para {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      font-weight: $medWeight;
+      color: $darkGreyMagenta;
+    }
+  }
+}
+
+.reviews {
+  grid-area: reviews;
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    .reviews__card {
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background-color: $lightGreyMagenta;
+      padding: 1.5rem 7.2rem;
+      color: $veryDarkMagenta;
+      .card__stars {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        img {
+          height: auto;
+          width: 1.5rem;
+        }
+      }
+      h3 {
+        line-height: 1;
+      }
+    }
+  }
+}
+
+.testimony {
+  grid-area: testimony;
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .testimony__card {
+      background-color: $veryDarkMagenta;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 3rem;
+      border-radius: 1rem;
+      .card__user {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        font-size: 1.2rem;
+        .card__username {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          .username--purple {
+            color: $softPink;
+          }
+        }
+        img {
+          height: auto;
+          width: 4rem;
+          border-radius: 50%;
+        }
+      }
+      .card__text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        font-weight: $lightWeight;
+      }
+    }
+  }
+}
+
+// Desktop Sizes
+
+@media screen and (min-width: 1100px) {
+  .text {
+    grid-area: text-area;
+  }
+  .reviews {
+    grid-area: reviews;
+  }
+  .testimony {
+    grid-area: testimony;
+  }
+  body {
+    height: 100vh;
+  }
+  main {
+    .main-container {
+      height: 100vh;
+      margin: 0 auto;
+      padding: 4rem 0;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "text-area reviews"
+        "testimony testimony";
+    }
+  }
+  .text {
+    grid-area: text-area;
+    align-self: center;
+    .container {
+      text-align: left;
+      gap: 2rem;
+      .text__title {
+        font-size: 6rem;
+        padding-right: 9rem;
+        padding-left: 0;
+      }
+      .text__para {
+        font-size: 1.6rem;
+        padding-right: 24rem;
+        font-weight: $medWeight;
+      }
+    }
+  }
+  .reviews {
+    grid-area: reviews;
+    align-self: center;
+    width: 100%;
+    .container {
+      align-items: center;
+      gap: 1.8rem;
+      .reviews__card {
+        font-size: 1.3rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 2.5rem 1.5rem;
+        width: 40rem;
+        &:first-child {
+          align-self: flex-start;
+        }
+        &:last-child {
+          align-self: flex-end;
+        }
+        .card__stars {
+          img {
+            width: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+  .testimony {
+    grid-area: testimony;
+    align-self: center;
+    height: 100%;
+    .container {
+      flex-direction: row;
+      gap: 4rem;
+      height: 80%;
+      align-items: center;
+      .testimony__card {
+        gap: 3.5rem;
+        padding: 6rem 3rem;
+        &:first-child {
+          align-self: flex-start;
+        }
+        &:last-child {
+          align-self: flex-end;
+        }
+        .card__user {
+          gap: 2rem;
+          font-size: 1.4rem;
+          .card__username {
+            gap: 0.3rem;
+            font-weight: $heavyWeight;
+            .username--purple {
+              font-weight: $medWeight;
+            }
+          }
+          img {
+            width: 5rem;
+          }
+        }
+        .card__text {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
